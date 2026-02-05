@@ -36,8 +36,7 @@ Uma API RESTful desenvolvida em C# com .NET 8 para gerenciar informações de cl
    ```
 
 5. **Acesse a API**
-   - A API estará disponível em: `http://localhost:5000` ou `https://localhost:5001`
-   - Swagger UI: `http://localhost:5000/` (em desenvolvimento)
+   - A API estará disponível em: `https://localhost:7014` ou `http://localhost:5205`
 
 ## 🛠️ Tecnologias Utilizadas
 
