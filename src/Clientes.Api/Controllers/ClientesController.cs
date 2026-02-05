@@ -27,6 +27,11 @@ public class ClientesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateCliente([FromBody] Cliente cliente)
     {
+        if (ExistsCliente(cliente.Id))
+        {
+            return Conflict(new { message = "Já existe um cliente com este ID." });
+        }
+
         if (DublicatedEmail(cliente.Email))
         {
             return Conflict(new { message = "Já existe um cliente com este email." });
@@ -36,6 +41,11 @@ public class ClientesController : ControllerBase
         _context.Clientes.Add(cliente);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetClientes), new { id = cliente.Id }, cliente);
+    }
+
+    private bool ExistsCliente(Guid id)
+    {
+        return _context.Clientes.Any(c => c.Id == id);
     }
 
     private bool DublicatedEmail(string email)
